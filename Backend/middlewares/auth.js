@@ -1,0 +1,17 @@
+import { catchAsyncError } from "./catchAsyncError.js";
+import ErrorHandler from "./error.js";
+import jwt from "jsonwebtoken"
+import { User } from "../models/userSchema.js";
+
+export const isAuthorized = catchAsyncError(async(req,res,next)=>{
+    const {token} = req.cookies;
+    if(!token){
+        return next(new ErrorHandler("User not authorized",400));
+    }
+    const userToken= jwt.verify(token,process.env.JWT_SECRET_KEY);
+    // userToken will give the _id of user from our mongoDB model
+
+    req.user = await User.findById(userToken.id);
+
+    next();
+})
