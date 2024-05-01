@@ -14,6 +14,7 @@ export const employerGetApplications = catchAsyncError(async (req, res, next) =>
     res.status(200).json({ success: true, applications })
 })
 
+// Find the application for the job seeker
 export const jobSeekerGetApplications = catchAsyncError(async (req, res, next) => {
     const { role } = req.user;
     if (role === "Employer") {
@@ -24,6 +25,7 @@ export const jobSeekerGetApplications = catchAsyncError(async (req, res, next) =
     res.status(200).json({ success: true, applications })
 })
 
+//Delete the application for the job seeker
 export const jobSeekerDeleteApplication = catchAsyncError(async (req, res, next) => {
     const { role } = req.user;
     if (role === "Employer") {

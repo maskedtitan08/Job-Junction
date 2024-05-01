@@ -39,7 +39,7 @@ app.use("/api/v1/application", applicationRouter);
 app.use("/api/v1/job", jobRouter);
 
 dbConnection();
-app.use(errorMiddleware);
+app.use(errorMiddleware); // I call the error middlware when there is an error in the the request
 
 
 

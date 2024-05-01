@@ -3,8 +3,10 @@ import ErrorHandler from "../middlewares/error.js";
 import { User } from "../models/userSchema.js";
 import { sendToken } from "../utils/jwtToken.js";
 
+
+
 export const register = catchAsyncError(async(req,res,next)=>{
-    const {name,email,phone,role,password} = req.body;   // jo details aa rhi hain unko varibale mein liya hai
+    const {name,email,phone,role,password} = req.body;   //de-structered the req.body 
     
     if(!name ||!email|| !phone || !password || !role){
         return next(new ErrorHandler("Fill full form",400));
